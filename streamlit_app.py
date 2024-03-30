@@ -1,5 +1,6 @@
 # Import python packages
 import streamlit as st
+import requests
 
 # Write directly to the app
 st.title("Example Streamlit App :cup_with_straw:")
@@ -24,6 +25,8 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT
 
 ingredients_list = st.multiselect('Choose up to 5 ingredients',my_dataframe,max_selections=5)
 
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response)
 if ingredients_list:
     # st.write(ingredients_list)
     # st.text(ingredients_list)
